@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg{
-    background-image: url('https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg');
-    background-size:cover ;
-}
+html {
+    scroll-behavior: smooth;
+  }
+  
+  @layer components {
+    .link {
+      @apply cursor-pointer hover:underline;
+    }
+    .button-outline {
+      @apply rounded-md border-2 border-primary hover:bg-primary/80 hover:text-black duration-500 py-2 px-6 text-primary tracking-wider;
+    }
+  }
+
+  
