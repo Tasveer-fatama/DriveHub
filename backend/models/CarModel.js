@@ -5,7 +5,10 @@ const mySchema = new Schema({
     model:String,
     plateNumber : String,
     image: String,
-    rent: Number,
-    
+    price: Number,
+    seats: Number,
+    type:String,
+    year:Number,
+    Ac: Boolean
 })
 module.exports= model('cars',mySchema);

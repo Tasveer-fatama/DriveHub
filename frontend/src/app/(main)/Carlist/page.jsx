@@ -24,18 +24,18 @@ const carList = [
 
 const CarList = () => {
   return (
-    <div className="pb-24">
+    <div ClassName={{}} 
+     style={{ backgroundImage: `url()` }}>
       <div className="container">
         {/* Heading */}
         <h1
           data-aos="fade-up"
-          className="text-3xl sm:text-4xl font-semibold font-serif mb-3"
+          className="text-3xl sm:text-4xl font-semibold font-serif  mt-8 mb-3 text-center"
         >
-          Lorem ipsum dolor
+         Book Now: Starting at (price) per day
         </h1>
-        <p data-aos="fade-up" aos-delay="400" className="text-sm pb-10">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor iure
-          nemo ab?
+        <p data-aos="fade-up" aos-delay="400" className="text-xl pb-10">
+       Locking in your perfect ride is easy! . This all-inclusive rate covers your basic needs, including mileage and standard insurance, with no hidden fees. To see a personalized quote including any taxes or additional coverage options, simply enter your desired dates and location. Don't miss out – book now and hit the road with incredible savings!
         </p>
         {/* Car listing */}
         <div>

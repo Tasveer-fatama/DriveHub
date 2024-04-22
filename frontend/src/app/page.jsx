@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Navbar from './(main)/Navbar/page'
+// import Navbar from './(main)/Navbar/page'
 import Header from './(main)/Header/page'
 import Knowmore from './(main)/Knowmore/page'
 import Services from './(main)/Services/page'
@@ -12,7 +12,7 @@ import Footer from './(main)/Footer/page'
 const page = () => {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Header/>
       <Knowmore/>
       <Services/>
