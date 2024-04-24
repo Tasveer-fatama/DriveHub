@@ -1,11 +1,12 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar';
+import Link from 'next/link';
 
 const CarCard = ({ car }) => {
   return (
     <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white">
-      <img className="w-full" src={car.image} alt={car.name} />
+      <img className="w-full" src={'http://localhost:5000/'+car.image} alt={car.name} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{car.name}</div>
         <p><strong>Brand:</strong> {car.brand}</p>
@@ -13,7 +14,7 @@ const CarCard = ({ car }) => {
         <p><strong>Type:</strong> {car.type}</p>
         <p><strong>Seats:</strong> {car.seats}</p>
         <p><strong>Price:</strong> {car.price}</p>
-        <button className="bg-black text-white py-2 px-4 rounded mt-4">Book Now</button>
+        <Link href={'/BookingForm/'+car._id} className="bg-black text-white py-2 px-4 rounded mt-4">Book Now</Link>
       </div>
     </div>
   );

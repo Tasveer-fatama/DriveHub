@@ -1,11 +1,40 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
+import { useParams } from "next/navigation";
 
 const CarBookingForm = () => {
 
+  const { id } = useParams();
+
+  const fetchCarData = () => {
+    fetch(`http://localhost:5000/car/getbyid/${id}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  useEffect(() => {
+    fetchCarData();
+  }, [])
+
+  const displayCarDetails = () => {
+    return <div className="grid grid-cols-12">
+      <div className="col-span-4">
+        <img src="" alt="" />
+      </div>
+      <div className="col-span-12"></div>
+    </div>
+  }
+  
 
   const CarBookingFormvalidationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name is required'),

@@ -1,13 +1,16 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 
 const AddCarForm = () => {
+
+    const [selFile, setSelFile] = useState('');
+
     // Define the initial form values
     const initialValues = {
-       
+
         brand: '',
         model: '',
         plateNumber: '',
@@ -19,13 +22,29 @@ const AddCarForm = () => {
         Ac: false
     };
 
+    const uploadFile = (e) => {
+        const file = e.target.files[0];
+        const fd = new FormData();
+        fd.append("myfile", file);
+        fetch("http://localhost:5000/util/uploadfile", {
+            method: "POST",
+            body: fd,
+        }).then((res) => {
+            if (res.status === 200) {
+                setSelFile(file.name);
+                console.log("file uploaded");
+                toast.success('Image Uploaded Successfully')
+            }
+        });
+    };
+
     // Define validation schema using Yup
     const validationSchema = Yup.object().shape({
-       
+
         brand: Yup.string().required('Brand is required'),
         model: Yup.string().required('Model is required'),
         plateNumber: Yup.string().required('Plate Number is required'),
-        image: Yup.string().required('Image URL is required'),
+        // image: Yup.string().required('Image URL is required'),
         price: Yup.number().required('Price is required').min(0, 'Price must be 0 or greater'),
         seats: Yup.number().required('Seats are required').min(1, 'Must have at least 1 seat'),
         type: Yup.string().required('Type is required'),
@@ -35,24 +54,25 @@ const AddCarForm = () => {
 
     // Handle form submission
     const handleSubmit = (values, { resetForm }) => {
+        values.image = selFile;
         fetch('http://localhost:5000/car/add', {
             method: 'POST',
             headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(values)
         })
-        .then((response) => {
-            console.log(response.status);
-            if(response.status === 200){
-                toast.success('Car Added Successfully')
-                resetForm();
-            }else{
-                toast.error('Some error occurred')
-            }
-        }).catch((err) => {
-            console.log(err);
-        });
+            .then((response) => {
+                console.log(response.status);
+                if (response.status === 200) {
+                    toast.success('Car Added Successfully')
+                    resetForm();
+                } else {
+                    toast.error('Some error occurred')
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
@@ -65,8 +85,8 @@ const AddCarForm = () => {
             >
                 {({ isSubmitting }) => (
                     <Form>
-                       
-                       
+
+
 
                         {/* Brand */}
                         <div className="mb-4">
@@ -112,12 +132,11 @@ const AddCarForm = () => {
                             <label htmlFor="image" className="block text-gray-700 font-medium mb-2">
                                 Image URL:
                             </label>
-                            <Field
-                                name="image"
-                                type="text"
+                            <input
+                            onChange={uploadFile}
+                                type="file"
                                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
-                            <ErrorMessage name="image" component="div" className="text-red-500" />
                         </div>
 
                         {/* Price */}
@@ -193,7 +212,7 @@ const AddCarForm = () => {
                             Add Car
                         </button>
                     </Form>
-                )}  
+                )}
             </Formik>
         </div>
     );
