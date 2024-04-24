@@ -5,12 +5,14 @@ const cors= require('cors');
 const app = express();
 const userRouter = require('./routers/userRouter');
 const carRouter = require('./routers/CarRouter');
+const BookingRouter = require('./routers/BookingRouter');
 //middleware
 app.use(cors({origin:'http://localhost:3000'}));
 
 app.use(express.json());
 app.use('/user',userRouter);
 app.use('/car',carRouter);
+app.use('/bookingmodel',BookingRouter);
 
 const port =5000;
 //start express server
