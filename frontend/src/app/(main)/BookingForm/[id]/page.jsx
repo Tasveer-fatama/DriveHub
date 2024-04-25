@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { useParams } from "next/navigation";
 import { IconArmchair, IconNumber123 } from "@tabler/icons-react";
+// import { IconArmchair, IconNumber123 } from "@tabler/icons-react";
 
 const CarBookingForm = () => {
 
@@ -60,6 +61,36 @@ const CarBookingForm = () => {
                 <p>{carDetails.plateNumber}</p>
               </div>
 
+              <div className="flex gap-3">
+                <p className="flex gap-3">
+                  model :
+                </p>
+                <p>{carDetails.model}</p>
+              </div>
+              <div className="flex gap-3">
+                <p className="flex gap-3">
+                  Brand :
+                </p>
+                <p>{carDetails.brand}</p>
+              </div>
+              <div className="flex gap-3">
+                <p className="flex gap-3">
+                  price :
+                </p>
+                <p>{carDetails.price}</p>
+              </div>
+              <div className="flex gap-3">
+                <p className="flex gap-3">
+                  Type :
+                </p>
+                <p>{carDetails.type}</p>
+              </div>
+              <div className="flex gap-3">
+                <p className="flex gap-3">
+                  year :
+                </p>
+                <p>{carDetails.year}</p>
+              </div>
             </div>
 
           </div>
