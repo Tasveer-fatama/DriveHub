@@ -43,7 +43,6 @@ const CarBookingForm = () => {
               Fully customizable rules to match your unique needs
             </h2>
 
-
             <h3>other details</h3>
 
             <div>

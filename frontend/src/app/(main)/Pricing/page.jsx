@@ -14,7 +14,7 @@ const CarCard = ({ car }) => {
         <p><strong>Type:</strong> {car.type}</p>
         <p><strong>Seats:</strong> {car.seats}</p>
         <p><strong>Price:</strong> {car.price}</p>
-        <Link href={'/BookingForm/' + car._id} className="bg-black text-white py-2 px-4 rounded mt-4">Book Now</Link>
+        <Link href={'/BookingForm/' + car._id} className="mt-5 w-full bg-black text-white py-2 px-4 rounded mt-4">Book Now</Link>
       </div>
     </div>
   );
