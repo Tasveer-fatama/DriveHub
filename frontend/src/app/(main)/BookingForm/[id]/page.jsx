@@ -281,8 +281,8 @@ const CarBookingForm = () => {
                 Last name*
               </label>
               <input
-                name="last-name"
-                id="las"
+                
+                id="lastName"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.lastName}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
@@ -299,7 +299,7 @@ const CarBookingForm = () => {
                 Email
               </label>
               <input
-               name="email"
+              
                id="email"
                onChange={CarBookingForm.handleChange}
                value={CarBookingForm.values.email}
@@ -318,7 +318,7 @@ const CarBookingForm = () => {
                 Contact Number
               </label>
               <input
-                name="subject"
+                
                 id="phone"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.phone}
@@ -336,7 +336,7 @@ const CarBookingForm = () => {
                  pickup
               </label>
               <input
-                                name="message"
+                                
                                 id="pickup"
                                 onChange={CarBookingForm.handleChange}
                                 value={CarBookingForm.values.pickup}
@@ -354,7 +354,7 @@ const CarBookingForm = () => {
                 Destination
               </label>
               <input
-                name="message"
+                
                 id="destination"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.destination}
@@ -373,7 +373,7 @@ const CarBookingForm = () => {
               </label>
               <input
                type="date"
-               name="message"
+              
                id="dateofBooking"
                onChange={CarBookingForm.handleChange}
                value={CarBookingForm.values.dateOfBooking}
@@ -391,8 +391,8 @@ const CarBookingForm = () => {
                   Timing
               </label>
               <input
-              name="message"
-               id="Timing"
+              
+               id="timing"
                onChange={CarBookingForm.handleChange}
                value={CarBookingForm.values.timing}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"

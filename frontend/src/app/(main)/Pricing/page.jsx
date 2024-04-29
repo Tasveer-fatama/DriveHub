@@ -49,6 +49,20 @@ const CarList = () => {
       masterList.filter((car) => car.type.toLowerCase() === type.toLowerCase())
     )
   }
+  const filterByPrice = (e) => {
+    const type = e.target.value;
+    console.log(type);
+    setCarsList(
+      masterList.filter((car) => car.price.toLowerCase() === type.toLowerCase())
+    )
+  }
+  const filterByBrand = (e) => {
+    const type = e.target.value;
+    console.log(type);
+    setCarsList(
+      masterList.filter((car) => car.brand.toLowerCase() === type.toLowerCase())
+    )
+  }
 
   const displayCars = () => {
     if (filteredCars.length > 0) {
@@ -89,8 +103,8 @@ const CarList = () => {
             <h3 className="text-lg font-semibold mb-2">Filter Cars</h3>
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-1">Price:</label>
-              <select className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
-                <option value="">All</option>
+              <select onChange={filterByPrice}className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
+                <option value="">Select</option>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
@@ -99,6 +113,7 @@ const CarList = () => {
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-1">Type:</label>
               <select onChange={filterByType} className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
+                <option value="">Select </option>
                 <option value="Sedan">Sedan</option>
                 <option value="SUV">SUV</option>
                 <option value="Hatchback">Hatchback</option>
@@ -108,7 +123,7 @@ const CarList = () => {
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-1">Brand:</label>
-              <select className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
+              <select onChange={filterByBrand} className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
                 <option value="">BMW</option>
                 <option value="">Honda</option>
                 <option value="low">Toyota</option>
