@@ -57,10 +57,10 @@ const CarList = () => {
     )
   }
   const filterByBrand = (e) => {
-    const type = e.target.value;
-    console.log(type);
+    const brand = e.target.value;
+    console.log(brand);
     setCarsList(
-      masterList.filter((car) => car.brand.toLowerCase() === type.toLowerCase())
+      masterList.filter((car) => car.brand.toLowerCase().trim() === brand.toLowerCase())
     )
   }
 
@@ -124,11 +124,12 @@ const CarList = () => {
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-1">Brand:</label>
               <select onChange={filterByBrand} className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
-                <option value="">BMW</option>
-                <option value="">Honda</option>
-                <option value="low">Toyota</option>
-                <option value="medium">ford</option>
-                <option value="high">Mercedes-Benz</option>
+                <option value="">Select Brand</option>
+                <option value="BMW">BMW</option>
+                <option value="Honda">Honda</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Ford">Ford</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
                 {/* {uniqueBrands.map(brand => (
             <option key={brand} value={brand}>{brand}</option>
           ))} */}
