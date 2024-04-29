@@ -76,21 +76,21 @@ const AddCarForm = () => {
     };
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Add Car</h1>
+        <div className="bg-emerald-300 shadow-md rounded-lg p-6 max-w-lg mx-auto ">
+            <h1 className="text-3xl font-bold mb-4 font-serif flex justify-center">ADD CAR</h1>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
                 {({ isSubmitting }) => (
-                    <Form>
+                    <Form  >
 
 
 
                         {/* Brand */}
                         <div className="mb-4">
-                            <label htmlFor="brand" className="block text-gray-700 font-medium mb-2">
+                            <label htmlFor="brand" className="block text-gray-900 font-medium mb-2">
                                 Brand:
                             </label>
                             <Field
@@ -206,7 +206,7 @@ const AddCarForm = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="bg-black text-white px-4 py-2 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             disabled={isSubmitting}
                         >
                             Add Car

@@ -18,7 +18,7 @@ function ColorSchemesExample() {
               <a href="/Pricing" className="hover:text-blue-500 font-bold">Pricing</a>
             </li>
             <li>
-              <a href="/login" className="hover:text-blue-500 font-bold">Login</a>
+              <a href="/signup" className="hover:text-blue-500 font-bold">Signup</a>
             </li>
             
           </ul>

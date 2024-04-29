@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { useParams } from "next/navigation";
 import { IconArmchair, IconNumber123 } from "@tabler/icons-react";
+import Contact from "../../contact/page";
 // import { IconArmchair, IconNumber123 } from "@tabler/icons-react";
 
 const CarBookingForm = () => {
@@ -188,8 +189,6 @@ const CarBookingForm = () => {
     phone: Yup.string().required('Phone Number is required'),
     pickup: Yup.string().required('Pickup is required'),
     destination: Yup.string().required('Destination is required'),
-    numberOfPersons: Yup.string().required('Number of Persons is required'),
-    luggage: Yup.string().required('Luggage is required'),
     dateOfBooking: Yup.date().required('Date of Booking is required'),
     timing: Yup.string().required('Timing is required'),
   });
@@ -201,8 +200,7 @@ const CarBookingForm = () => {
       phone: "",
       pickup: "",
       destination: "",
-      numberOfPersons: "1",
-      luggage: "1",
+      
       dateOfBooking: "",
       timing: "",
     },
@@ -244,17 +242,15 @@ const CarBookingForm = () => {
         displayCarDetails()
       }
 
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
+      <div className=" py-6 sm:py-8 lg:py-12 bg-gray-100">
+        <div className="mx-auto max-w-screen-2xl px-4 md:px-8 ">
           {/* text - start */}
-          <div className="mb-10 md:mb-16">
-            <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
-              Get in touch
+          <div className="mb-10 md:mb-16 ">
+            <h2 className="mb-4 text-center text-2xl font-serif font-bold text-gray-800 md:mb-6 lg:text-3xl">
+            Rent the Car You Need
             </h2>
             <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-              This is a section of some simple filler text, also known as placeholder
-              text. It shares some characteristics of a real written text but is
-              random or otherwise generated.
+             
             </p>
           </div>
           {/* text - end */}
@@ -265,7 +261,7 @@ const CarBookingForm = () => {
                 htmlFor="first-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                First name*
+                First name
               </label>
               <input
                 name="first-name"
@@ -274,6 +270,9 @@ const CarBookingForm = () => {
                 value={CarBookingForm.values.firstName}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
+                {CarBookingForm.touched.name && (
+                          <small class="text-danger">{CarBookingForm.errors.name}</small>
+                        )}
             </div>
             <div>
               <label
@@ -289,43 +288,35 @@ const CarBookingForm = () => {
                 value={CarBookingForm.values.lastName}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
+               {CarBookingForm.touched.lastName && (
+                          <small class="text-danger">{CarBookingForm.errors.lastName}</small>
+                        )}
             </div>
-            <div className="sm:col-span-2">
+            <div>
               <label
-                htmlFor="company"
+                htmlFor="first-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                Number of Person
+                Email
               </label>
               <input
-                name="company"
-                id="numberOfPersons"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.numberOfPersons}
+               name="email"
+               id="email"
+               onChange={CarBookingForm.handleChange}
+               value={CarBookingForm.values.email}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
+               {CarBookingForm.touched.email && (
+                          <small class="text-danger">{CarBookingForm.errors.email}</small>
+                        )}
             </div>
-            <div className="sm:col-span-2">
+           
+            <div>
               <label
-                htmlFor="email"
+                htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                Email*
-              </label>
-              <input
-                name="email"
-                id="email"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.email}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="phoneNumber"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                phoneNumber
+                Contact Number
               </label>
               <input
                 name="subject"
@@ -334,26 +325,31 @@ const CarBookingForm = () => {
                 value={CarBookingForm.values.phone}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
+               {CarBookingForm.touched.phone && (
+                          <small class="text-danger">{CarBookingForm.errors.phone}</small>
+                        )}
             </div>
-            <div className="sm:col-span-2">
+            <div>
               <label
-                htmlFor="message"
+                htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                pickup
+                 pickup
               </label>
               <input
-                name="message"
-                id="pickup"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.pickup}
-                className=" w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                defaultValue={""}
+                                name="message"
+                                id="pickup"
+                                onChange={CarBookingForm.handleChange}
+                                value={CarBookingForm.values.pickup}
+                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
+               {CarBookingForm.touched.pickup && (
+                          <small class="text-danger">{CarBookingForm.errors.pickup}</small>
+                        )}
             </div>
-            <div className="sm:col-span-2">
+            <div>
               <label
-                htmlFor="message"
+                htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
                 Destination
@@ -363,62 +359,60 @@ const CarBookingForm = () => {
                 id="destination"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.destination}
-                className=" w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                defaultValue={""}
+                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
+               {CarBookingForm.touched.destination && (
+                          <small class="text-danger">{CarBookingForm.errors.destination}</small>
+                        )}
             </div>
-            <div className="sm:col-span-2">
+            <div>
               <label
-                htmlFor="message"
+                htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                Lagguage
+                 Date
               </label>
               <input
-                name="message"
-                id="luggage"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.luggage}
-                className=" w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                defaultValue={""}
+               type="date"
+               name="message"
+               id="dateofBooking"
+               onChange={CarBookingForm.handleChange}
+               value={CarBookingForm.values.dateOfBooking}
+                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"defaultValue={""}
               />
+               {CarBookingForm.touched.date && (
+                          <small class="text-danger">{CarBookingForm.errors.date}</small>
+                        )}
             </div>
-            <div className="sm:col-span-2">
+            <div>
               <label
-                htmlFor="message"
+                htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                Date
+                  Timing
               </label>
               <input
-                type="date"
-                name="message"
-                id="dateofBooking"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.dateOfBooking}
-                className=" w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                defaultValue={""}
+              name="message"
+               id="Timing"
+               onChange={CarBookingForm.handleChange}
+               value={CarBookingForm.values.timing}
+                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"defaultValue={""}
               />
+               {CarBookingForm.touched.timing && (
+                          <small class="text-danger">{CarBookingForm.errors.timing}</small>
+                        )}
             </div>
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="message"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Timing
-              </label>
-              <input
-                name="message"
-                id="Timing"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.timing}
-                className=" w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                defaultValue={""}
-              />
-            </div>
+            
+           
+            
+           
+            
+           
+            
+            
             <div className="flex items-center justify-between sm:col-span-2">
-              <button className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
-                Send
+              <button  type="submit" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
+                Book Now
               </button>
               <span className="text-sm text-gray-500">*Required</span>
             </div>
