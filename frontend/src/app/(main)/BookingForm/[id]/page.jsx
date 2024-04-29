@@ -264,7 +264,6 @@ const CarBookingForm = () => {
                 First name
               </label>
               <input
-                name="first-name"
                 id="firstName"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.firstName}
