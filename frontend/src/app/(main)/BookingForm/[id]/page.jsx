@@ -378,7 +378,7 @@ const CarBookingForm = () => {
                id="dateofBooking"
                onChange={CarBookingForm.handleChange}
                value={CarBookingForm.values.dateOfBooking}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"defaultValue={""}
+                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
                {CarBookingForm.touched.date && (
                           <small class="text-danger">{CarBookingForm.errors.date}</small>
@@ -396,7 +396,7 @@ const CarBookingForm = () => {
                id="Timing"
                onChange={CarBookingForm.handleChange}
                value={CarBookingForm.values.timing}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"defaultValue={""}
+                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
                {CarBookingForm.touched.timing && (
                           <small class="text-danger">{CarBookingForm.errors.timing}</small>
