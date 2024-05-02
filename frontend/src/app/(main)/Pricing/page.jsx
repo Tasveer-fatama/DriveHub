@@ -26,6 +26,8 @@ const CarList = () => {
   const [carsList, setCarsList] = useState([]);
   const [masterList, setMasterList] = useState([]);
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   const fetchCarData = () => {
     fetch('http://localhost:5000/car/getall')
       .then((response) => {
@@ -53,7 +55,7 @@ const CarList = () => {
     const type = e.target.value;
     console.log(price);
     setCarsList(
-      masterList.filter((car) => car.price.toLowerCase() ===price.toLowerCase())
+      masterList.filter((car) => car.price.toLowerCase() === price.toLowerCase())
     )
   }
   const filterByBrand = (e) => {
@@ -95,6 +97,24 @@ const CarList = () => {
     return true;
   });
 
+  const searchCars = () => {
+    fetch('http://localhost:5000/car/getall')
+      .then((response) => {
+        console.log(response.status);
+        return response.json();
+      })
+      .then((data) => {
+        const filteredCars = data.filter((car) => `${car.brand.toLowerCase()} ${car.model.toLowerCase()} ${car.type.toLowerCase()}`.includes(searchQuery.toLowerCase()));
+        setCarsList(filteredCars);
+        setMasterList(filteredCars);
+        // console.log(searchQuery);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }
+
   return (
     <div className="bg-white">
       <div className="grid grid-cols-12">
@@ -103,7 +123,7 @@ const CarList = () => {
             <h3 className="text-lg font-semibold mb-2">Filter Cars</h3>
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-1">Price:</label>
-              <select onChange={filterByPrice}className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
+              <select onChange={filterByPrice} className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:border-blue-500">
                 <option value="">Select</option>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
@@ -153,47 +173,49 @@ const CarList = () => {
                 </p>
                 <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
                   {/* Form */}
-                  <form>
-                    <div className="relative z-10 flex space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-gray-900/20">
-                      <div className="flex-[1_0_0%] ">
-                        <label
-                          htmlFor="hs-search-article-1"
-                          className="block text-sm text-gray-700 font-medium dark:text-white"
-                        >
-                          <span className="sr-only">Search article</span>
-                        </label>
-                        <input
-                          type="email"
-                          name="hs-search-article-1"
-                          id="hs-search-article-1"
-                          className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                          placeholder="Search article"
-                        />
-                      </div>
-                      <div className="flex-[0_0_auto] ">
-                        <a
-                          className="size-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                          href="#"
-                        >
-                          <svg
-                            className="flex-shrink-0 size-5"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <circle cx={11} cy={11} r={8} />
-                            <path d="m21 21-4.3-4.3" />
-                          </svg>
-                        </a>
-                      </div>
+                  {/* <form> */}
+                  <div className="relative z-10 flex space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-gray-900/20">
+                    <div className="flex-[1_0_0%] ">
+                      <label
+                        htmlFor="hs-search-article-1"
+                        className="block text-sm text-gray-700 font-medium dark:text-white"
+                      >
+                        <span className="sr-only">Search article</span>
+                      </label>
+                      <input
+                        onChange={e => setSearchQuery(e.target.value)}
+                        type="email"
+                        name="hs-search-article-1"
+                        id="hs-search-article-1"
+                        className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        placeholder="Search article"
+                      />
                     </div>
-                  </form>
+                    <div className="flex-[0_0_auto] ">
+                      <button
+                        onClick={searchCars}
+                        className="size-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                        type='button'
+                      >
+                        <svg
+                          className="flex-shrink-0 size-5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={24}
+                          height={24}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx={11} cy={11} r={8} />
+                          <path d="m21 21-4.3-4.3" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  {/* </form> */}
                   {/* End Form */}
                   {/* SVG Element */}
                   <div className="hidden md:block absolute top-0 end-0 -translate-y-12 translate-x-20">
