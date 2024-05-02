@@ -96,7 +96,7 @@ const CarList = () => {
   });
 
   return (
-    <div className="bg-emerald-300">
+    <div className="bg-white">
       <div className="grid grid-cols-12">
         <div className="col-span-2">
           <div className="p-4 bg-emerald-200">
