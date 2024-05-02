@@ -13,7 +13,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use('/user', userRouter);
 app.use('/car', carRouter);
-app.use('/bookingmodel', BookingRouter);
+app.use('/booking', BookingRouter);
 app.use('/util', utilRouter);
 
 app.use(express.static('./static/uploads'))

@@ -200,41 +200,31 @@ const CarBookingForm = () => {
       phone: "",
       pickup: "",
       destination: "",
-      
       dateOfBooking: "",
       timing: "",
     },
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
-      resetForm();
+      fetch('http://localhost:5000/booking/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 200) {
+            toast.success('Booking Successful');
+            resetForm();
+          } else {
+            toast.error('Error occurred. Please try again.');
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
     },
     validationSchema: CarBookingFormvalidationSchema
   });
-
-
-
-  const handleSubmit = (values, { resetForm }) => {
-    fetch('http://localhost:5000/bookingmodel/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(values)
-    })
-      .then((response) => {
-        console.log(response.status);
-        if (response.status === 200) {
-          toast.success('Booking Successful');
-          resetForm();
-        } else {
-          toast.error('Error occurred. Please try again.');
-        }
-      }).catch((err) => {
-        console.log(err);
-      });
-  };
-
-
 
   return (
     <div>
@@ -247,10 +237,10 @@ const CarBookingForm = () => {
           {/* text - start */}
           <div className="mb-10 md:mb-16 ">
             <h2 className="mb-4 text-center text-2xl font-serif font-bold text-gray-800 md:mb-6 lg:text-3xl">
-            Rent the Car You Need
+              Rent the Car You Need
             </h2>
             <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-             
+
             </p>
           </div>
           {/* text - end */}
@@ -269,9 +259,9 @@ const CarBookingForm = () => {
                 value={CarBookingForm.values.firstName}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-                {CarBookingForm.touched.name && (
-                          <small class="text-danger">{CarBookingForm.errors.name}</small>
-                        )}
+              {CarBookingForm.touched.name && (
+                <small class="text-danger">{CarBookingForm.errors.name}</small>
+              )}
             </div>
             <div>
               <label
@@ -281,15 +271,15 @@ const CarBookingForm = () => {
                 Last name*
               </label>
               <input
-                
+
                 id="lastName"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.lastName}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-               {CarBookingForm.touched.lastName && (
-                          <small class="text-danger">{CarBookingForm.errors.lastName}</small>
-                        )}
+              {CarBookingForm.touched.lastName && (
+                <small class="text-danger">{CarBookingForm.errors.lastName}</small>
+              )}
             </div>
             <div>
               <label
@@ -299,17 +289,17 @@ const CarBookingForm = () => {
                 Email
               </label>
               <input
-              
-               id="email"
-               onChange={CarBookingForm.handleChange}
-               value={CarBookingForm.values.email}
+
+                id="email"
+                onChange={CarBookingForm.handleChange}
+                value={CarBookingForm.values.email}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-               {CarBookingForm.touched.email && (
-                          <small class="text-danger">{CarBookingForm.errors.email}</small>
-                        )}
+              {CarBookingForm.touched.email && (
+                <small class="text-danger">{CarBookingForm.errors.email}</small>
+              )}
             </div>
-           
+
             <div>
               <label
                 htmlFor="last-name"
@@ -318,33 +308,33 @@ const CarBookingForm = () => {
                 Contact Number
               </label>
               <input
-                
+
                 id="phone"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.phone}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-               {CarBookingForm.touched.phone && (
-                          <small class="text-danger">{CarBookingForm.errors.phone}</small>
-                        )}
+              {CarBookingForm.touched.phone && (
+                <small class="text-danger">{CarBookingForm.errors.phone}</small>
+              )}
             </div>
             <div>
               <label
                 htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                 pickup
+                pickup
               </label>
               <input
-                                
-                                id="pickup"
-                                onChange={CarBookingForm.handleChange}
-                                value={CarBookingForm.values.pickup}
+
+                id="pickup"
+                onChange={CarBookingForm.handleChange}
+                value={CarBookingForm.values.pickup}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-               {CarBookingForm.touched.pickup && (
-                          <small class="text-danger">{CarBookingForm.errors.pickup}</small>
-                        )}
+              {CarBookingForm.touched.pickup && (
+                <small class="text-danger">{CarBookingForm.errors.pickup}</small>
+              )}
             </div>
             <div>
               <label
@@ -354,63 +344,63 @@ const CarBookingForm = () => {
                 Destination
               </label>
               <input
-                
+
                 id="destination"
                 onChange={CarBookingForm.handleChange}
                 value={CarBookingForm.values.destination}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-               {CarBookingForm.touched.destination && (
-                          <small class="text-danger">{CarBookingForm.errors.destination}</small>
-                        )}
+              {CarBookingForm.touched.destination && (
+                <small class="text-danger">{CarBookingForm.errors.destination}</small>
+              )}
             </div>
             <div>
               <label
                 htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                 Date
+                Date
               </label>
               <input
-               type="date"
-              
-               id="dateofBooking"
-               onChange={CarBookingForm.handleChange}
-               value={CarBookingForm.values.dateOfBooking}
+                type="date"
+
+                id="dateofBooking"
+                onChange={CarBookingForm.handleChange}
+                value={CarBookingForm.values.dateOfBooking}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-               {CarBookingForm.touched.date && (
-                          <small class="text-danger">{CarBookingForm.errors.date}</small>
-                        )}
+              {CarBookingForm.touched.date && (
+                <small class="text-danger">{CarBookingForm.errors.date}</small>
+              )}
             </div>
             <div>
               <label
                 htmlFor="last-name"
                 className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
               >
-                  Timing
+                Timing
               </label>
               <input
-              
-               id="timing"
-               onChange={CarBookingForm.handleChange}
-               value={CarBookingForm.values.timing}
+
+                id="timing"
+                onChange={CarBookingForm.handleChange}
+                value={CarBookingForm.values.timing}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
-               {CarBookingForm.touched.timing && (
-                          <small class="text-danger">{CarBookingForm.errors.timing}</small>
-                        )}
+              {CarBookingForm.touched.timing && (
+                <small class="text-danger">{CarBookingForm.errors.timing}</small>
+              )}
             </div>
-            
-           
-            
-           
-            
-           
-            
-            
+
+
+
+
+
+
+
+
             <div className="flex items-center justify-between sm:col-span-2">
-              <button  type="submit" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
+              <button type="submit" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
                 Book Now
               </button>
               <span className="text-sm text-gray-500">*Required</span>

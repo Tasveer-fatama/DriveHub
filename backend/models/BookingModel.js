@@ -1,47 +1,34 @@
-const { model , Schema } = require('../connection');
+const { model, Schema, Types } = require('../connection');
 
 const mySchema = new Schema({
-   
-    firstName: {
+    user: { type : Types.ObjectId, ref: 'users' },
+    car: { type : Types.ObjectId, ref: 'cars' },
+    pickupLocation: {
         type: String,
         required: true
     },
-lastName: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    phoneNumber: {
-        type: Number,
-        required: true
-    },
-    pickup: {
-        type: String,
-        required: true
-    },
-    Destination: {
-        type: String,
-        required: true
-    },
-    numberofPersons: {
-        type: Number,
-        required: true
-    },
-    luggage: {
-        type: Number,
-        required: true
-    },
-    dateofBooking: {
+    bookDate: {
         type: Date,
         default: Date.now
     },
-    timing: {
-        type: Number
-        
-    }
+    duration: {
+        type: String
+    },
+    paymentDetails: {
+        type: Object
+    },
+    intendId: {
+        type: String,
+        unique: true
+    },
+    paid: {
+        type: Boolean,
+        default: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
 
 });
 
