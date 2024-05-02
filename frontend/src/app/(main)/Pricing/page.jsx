@@ -51,9 +51,9 @@ const CarList = () => {
   }
   const filterByPrice = (e) => {
     const type = e.target.value;
-    console.log(type);
+    console.log(price);
     setCarsList(
-      masterList.filter((car) => car.price.toLowerCase() === type.toLowerCase())
+      masterList.filter((car) => car.price.toLowerCase() ===price.toLowerCase())
     )
   }
   const filterByBrand = (e) => {

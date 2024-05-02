@@ -1,106 +1,75 @@
-'use client'
-import React from 'react';
-import { Formik, useFormik } from 'formik';
-import * as Yup from 'yup';
-
-const SignupPage = () => {
-  const signupvalidationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    password: Yup.string().required('Password is required'),
-    confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Confirm Password is required'),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    },
-    onSubmit: values => {
-      console.log(values);
-    },
-    validationSchema: signupvalidationSchema
-  });
-
+import React from "react";
+const RegistartionForm = () => {
   return (
-    <div className="min-h-screen flex items-center bg-cover bg-center mt-0" style={{ backgroundImage: 'url("https://c4.wallpaperflare.com/wallpaper/66/25/239/machine-grey-background-volvo-wallpaper-preview.jpg")' }}>
-      <div className="bg-white p-5 rounded shadow-md max-w-md w-full ml-5">
-        <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-        <form onSubmit={formik.handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-              Name
-            </label>
-            <input
-              className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${formik.touched.name && formik.errors.name ? 'border-red-500' : ''}`}
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Your Name"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            />
-            {formik.touched.name && formik.errors.name && <p className="text-red-500 text-xs italic">{formik.errors.name}</p>}
+    <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
+      <div className="max-w-screen-xl bg-white border shadow sm:rounded-lg flex justify-center flex-1">
+        <div className="flex-1 bg-blue-900 text-center hidden md:flex">
+          <div
+            className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url(https://www.tailwindtap.com/assets/common/marketing.svg)`,
+            }}
+          ></div>
+        </div>
+        <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+          <div className=" flex flex-col items-center">
+            <div className="text-center">
+              <h1 className="text-2xl xl:text-4xl font-extrabold text-blue-900">
+                Student Sign up
+              </h1>
+              <p className="text-[12px] text-gray-500">
+                Hey enter your details to create your account
+              </p>
+            </div>
+            <div className="w-full flex-1 mt-8">
+              <div className="mx-auto max-w-xs flex flex-col gap-4">
+                <input
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  type="text"
+                  placeholder="Enter your name"
+                />
+                <input
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  type="email"
+                  placeholder="Enter your email"
+                />
+                <input
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  type="tel"
+                  placeholder="Enter your phone"
+                />
+                <input
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  type="password"
+                  placeholder="Password"
+                />
+                <button className="mt-5 tracking-wide font-semibold bg-blue-900 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                  <svg
+                    className="w-6 h-6 -ml-2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    strokeLinecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                    <circle cx="8.5" cy="7" r="4" />
+                    <path d="M20 8v6M23 11h-6" />
+                  </svg>
+                  <span className="ml-3">Sign Up</span>
+                </button>
+                <p className="mt-6 text-xs text-gray-600 text-center">
+                  Already have an account?{" "}
+                  <a href="">
+                    <span className="text-blue-900 font-semibold">Sign in</span>
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${formik.touched.email && formik.errors.email ? 'border-red-500' : ''}`}
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Your Email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            />
-            {formik.touched.email && formik.errors.email && <p className="text-red-500 text-xs italic">{formik.errors.email}</p>}
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${formik.touched.password && formik.errors.password ? 'border-red-500' : ''}`}
-              id="password"
-              name="password"
-              type="password"
-              placeholder="Your Password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
-            {formik.touched.password && formik.errors.password && <p className="text-red-500 text-xs italic">{formik.errors.password}</p>}
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
-              Confirm Password
-            </label>
-            <input
-              className={`appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${formik.touched.confirmPassword && formik.errors.confirmPassword ? 'border-red-500' : ''}`}
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm Password"
-              onChange={formik.handleChange}
-              value={formik.values.confirmPassword}
-            />
-            {formik.touched.confirmPassword && formik.errors.confirmPassword && <p className="text-red-500 text-xs italic">{formik.errors.confirmPassword}</p>}
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Sign Up
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
-
-export default SignupPage;
+export default RegistartionForm;
