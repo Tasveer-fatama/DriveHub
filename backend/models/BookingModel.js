@@ -17,6 +17,9 @@ const mySchema = new Schema({
     paymentDetails: {
         type: Object
     },
+    destination: {
+        type: String
+    },
     intendId: {
         type: String,
         unique: true
@@ -32,4 +35,4 @@ const mySchema = new Schema({
 
 });
 
-model.exports = model('bookingmodel', mySchema);
+module.exports = model('bookingmodel', mySchema);

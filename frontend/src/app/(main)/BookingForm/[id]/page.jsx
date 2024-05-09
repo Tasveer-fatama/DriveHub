@@ -183,9 +183,8 @@ const CarBookingForm = () => {
 
 
   const CarBookingFormvalidationSchema = Yup.object().shape({
-    firstName: Yup.string().required('First Name is required'),
-    lastName: Yup.string().required('Last Name is required'),
-    email: Yup.string().email('Invalid email').required('Email is required'),
+
+
     phone: Yup.string().required('Phone Number is required'),
     pickup: Yup.string().required('Pickup is required'),
     destination: Yup.string().required('Destination is required'),
@@ -226,199 +225,115 @@ const CarBookingForm = () => {
     validationSchema: CarBookingFormvalidationSchema
   });
 
+  const bookingCar = useFormik({
+    initialValues:{
+      pickupLocation:"",
+      bookDate:"",
+      duration:"",
+      paymentDetails:"",
+      intendId:"",
+      destination:""
+
+    },
+    onSubmit: (values, {resetForm}) => {
+      fetch("http://localhost:5000/booking/add",{
+        method:"POST",
+        body:JSON.stringify(values),
+        headers:{
+          "Content-Type":"application/json"
+        }
+      })
+      .then((response) => {
+        console.log(response.status);
+        if (response.status === 200) {
+          toast.success(' Car Booked Successful');
+          resetForm();
+        } else {
+          toast.error('Error occurred. Please try again.');
+        }
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+  })
   return (
     <div>
       {
         displayCarDetails()
       }
-
-      <div className=" py-6 sm:py-8 lg:py-12 bg-gray-100">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8 ">
-          {/* text - start */}
-          <div className="mb-10 md:mb-16 ">
-            <h2 className="mb-4 text-center text-2xl font-serif font-bold text-gray-800 md:mb-6 lg:text-3xl">
-              Rent the Car You Need
-            </h2>
-            <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
-
-            </p>
-          </div>
-          {/* text - end */}
-          {/* form - start */}
-          <form onSubmit={CarBookingForm.handleSubmit} className="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
-            <div>
-              <label
-                htmlFor="first-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                First name
-              </label>
-              <input
-                id="firstName"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.firstName}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.name && (
-                <small class="text-danger">{CarBookingForm.errors.name}</small>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="last-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Last name*
-              </label>
-              <input
-
-                id="lastName"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.lastName}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.lastName && (
-                <small class="text-danger">{CarBookingForm.errors.lastName}</small>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="first-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Email
-              </label>
-              <input
-
-                id="email"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.email}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.email && (
-                <small class="text-danger">{CarBookingForm.errors.email}</small>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="last-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Contact Number
-              </label>
-              <input
-
-                id="phone"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.phone}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.phone && (
-                <small class="text-danger">{CarBookingForm.errors.phone}</small>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="last-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                pickup
-              </label>
-              <input
-
-                id="pickup"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.pickup}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.pickup && (
-                <small class="text-danger">{CarBookingForm.errors.pickup}</small>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="last-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Destination
-              </label>
-              <input
-
-                id="destination"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.destination}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.destination && (
-                <small class="text-danger">{CarBookingForm.errors.destination}</small>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="last-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Date
-              </label>
-              <input
-                type="date"
-
-                id="dateofBooking"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.dateOfBooking}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.date && (
-                <small class="text-danger">{CarBookingForm.errors.date}</small>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="last-name"
-                className="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
-                Timing
-              </label>
-              <input
-
-                id="timing"
-                onChange={CarBookingForm.handleChange}
-                value={CarBookingForm.values.timing}
-                className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
-              {CarBookingForm.touched.timing && (
-                <small class="text-danger">{CarBookingForm.errors.timing}</small>
-              )}
-            </div>
-
-
-
-
-
-
-
-
-            <div className="flex items-center justify-between sm:col-span-2">
-              <button type="submit" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">
-                Book Now
-              </button>
-              <span className="text-sm text-gray-500">*Required</span>
-            </div>
-            <p className="text-xs text-gray-400">
-              By signing up to our newsletter you agree to our{" "}
-              <a
-                href="#"
-                className="underline transition duration-100 hover:text-indigo-500 active:text-indigo-600"
-              >
-                Privacy Policy
-              </a>
-              .
-            </p>
-          </form>
-          {/* form - end */}
+    <div className="container mx-auto px-4 py-8 bg-black text-yellow-500">
+  <h1 className="text-3xl font-bold text-center mb-8">Book a Car</h1>
+  <form className="max-w-md mx-auto" onSubmit={bookingCar.handleSubmit}>
+    <div className="mb-6">
+      <label
+        htmlFor="pickupLocation"
+        className="block text-sm font-medium mb-2"
+      >
+        PICKUP LOCATION
+      </label>
+      <input
+        id="pickupLocation"
+        type="text"
+        value={bookingCar.values.pickupLocation}
+        onChange={bookingCar.handleChange}
+        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+      />
+    </div>
+    <div className="mb-6">
+      <label htmlFor="destination" className="block text-sm font-medium mb-2">
+        DESTINATION
+      </label>
+      <input
+        id="destination"
+        value={bookingCar.values.destination}
+        onChange={bookingCar.handleChange}
+        type="text"
+        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+      />
+    </div>
+    <div className="flex flex-wrap -mx-3 mb-6">
+      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div className="flex items-center">
+          <label
+            htmlFor="pickupDate"
+            className="block text-sm font-medium mr-2"
+          >
+            PICKUP DATE
+          </label>
+          <input
+            id="bookDate"
+            value={bookingCar.values.bookDate}
+            onChange={bookingCar.handleChange}
+            type="date"
+            className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+          />
         </div>
       </div>
+      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <div className="flex items-center">
+          <label htmlFor="hour" className="block text-sm font-medium mr-2">
+            DAYS
+          </label>
+          <input
+            id="duration"
+            type="number"
+            value={bookingCar.values.duration}
+            onChange={bookingCar.handleChange}
+            min={1}
+            max={12}
+            className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+          />
+        </div>
+      </div>
+    </div>
+    <button type="submit" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-full">
+      Book Now
+    </button>
+  </form>
+</div>
+
+
+
 
     </div>
   );

@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 const CarCard = ({ car }) => {
   return (
+   <div className="bg-black">
     <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white">
       <img className="w-full h-56 object-contain" src={'http://localhost:5000/' + car.image} alt={car.name} />
       <div className="px-6 py-4">
@@ -15,6 +16,7 @@ const CarCard = ({ car }) => {
           <Link href={'/BookingForm/' + car._id} className="w-full bg-black text-white py-2 px-4 rounded">Book Now</Link>
         </div>
       </div>
+    </div>
     </div>
   );
 }
@@ -116,10 +118,10 @@ const CarList = () => {
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-black">
       <div className="grid grid-cols-12">
         <div className="col-span-2">
-          <div className="p-4 bg-emerald-200">
+          <div className="p-4 bg-yellow-300">
             <h3 className="text-lg font-semibold mb-2">Filter Cars</h3>
             <div className="mb-4">
               <label className="block text-gray-700 font-semibold mb-1">Price:</label>
@@ -165,10 +167,10 @@ const CarList = () => {
           <div className="relative overflow-hidden">
             <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-24">
               <div className="text-center">
-                <h1 className="text-4xl sm:text-6xl font-bold text-gray-800 dark:text-neutral-200">
+                <h1 className="text-4xl sm:text-6xl font-bold text-yellow-300 dark:text-neutral-200">
                   Book Your Car
                 </h1>
-                <p className="mt-3 text-gray-600 dark:text-neutral-400">
+                <p className="mt-3 text-yellow-300 dark:text-neutral-400">
                   Find your perfect ride. Seamlessly.Drive away happy
                 </p>
                 <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
@@ -187,7 +189,7 @@ const CarList = () => {
                         type="email"
                         name="hs-search-article-1"
                         id="hs-search-article-1"
-                        className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-yellow-300 focus:ring-yellow-300 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="Search article"
                       />
                     </div>

@@ -76,7 +76,8 @@ const AddCarForm = () => {
     };
 
     return (
-        <div className="bg-emerald-300 shadow-md rounded-lg p-6 max-w-lg mx-auto ">
+       <div className="bg-black">
+        <div className="bg-yellow-300 shadow-md rounded-lg p-6 max-w-lg mx-auto ">
             <h1 className="text-3xl font-bold mb-4 font-serif flex justify-center">ADD CAR</h1>
             <Formik
                 initialValues={initialValues}
@@ -214,6 +215,7 @@ const AddCarForm = () => {
                     </Form>
                 )}
             </Formik>
+        </div>
         </div>
     );
 };

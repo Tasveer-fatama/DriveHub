@@ -1,45 +1,102 @@
+'use client';
 import React from "react";
-const LoginWithGoogleButton = () => {
+import { useFormik } from 'formik';
+import toast from 'react-hot-toast';
+import Link from "next/link";
+
+
+
+
+const Login = () => {
+
+  const loginForm = useFormik({
+    initialValues: {
+     
+      email: '',
+      password: ''
+      
+    },
+    onSubmit: (values) => {
+      console.log(values);
+
+     
+
+      fetch('http://localhost:5000/user/authenticate', {
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 200) {
+            toast.success('User LoggedIn Successfully');
+          } else {
+            toast.error('User LoggedIn Failed');
+          }
+        }).catch((err) => {
+          console.log(err);
+          toast.error('User LoggedIn Failed');
+        });
+
+
+    },
+   
+  })
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
-      <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
+      <div className="flex bg-black rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
         <div
           className="hidden md:block lg:w-1/2 bg-cover bg-blue-700"
           style={{
-            backgroundImage: `url(https://www.tailwindtap.com//assets/components/form/userlogin/login_tailwindtap.jpg)`,
+            backgroundImage: `url(https://png.pngtree.com/thumb_back/fh260/back_our/20190620/ourmid/pngtree-cat-yellow-geometric-taobao-main-map-image_172724.jpg)`,
           }}
         ></div>
         <div className="w-full p-8 lg:w-1/2">
-          <p className="text-xl text-gray-600 text-center">Welcome back!</p>
-          <div className="mt-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+          <h1 className="text-xl text-yellow-500 text-center">Welcome back!</h1>
+          <form className="mt-4" onSubmit={loginForm.handleSubmit}>
+            <label className="block text-yellow-500 text-sm font-bold mb-2">
               Email Address
             </label>
             <input
-              className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+              className="text-yellow-500 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
               type="email"
               required
+              id="email"
+              onChange={loginForm.handleChange}
+              value={loginForm.values.email}
             />
-          </div>
+            {loginForm.touched.email && (
+                          <small class="text-danger">{loginForm.errors.email}</small>
+                        )}
+          </form>
           <div className="mt-4 flex flex-col justify-between">
             <div className="flex justify-between">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
+              <label className="block text-yellow-500 text-sm font-bold mb-2">
                 Password
               </label>
             </div>
             <input
-              className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+              className="text-yellow-500 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
               type="password"
+              id="password"
+              onChange={loginForm.handleChange}
+              value={loginForm.values.password}
+
             />
-            <a
-              href="#"
-              className="text-xs text-gray-500 hover:text-gray-900 text-end w-full mt-2"
+             {loginForm.touched.password && (
+                          <small class="text-danger">{loginForm.errors.password}</small>
+                        )}
+            <Link
+              href={"/resetPassword"}
+              className="text-xs text-yellow-500 hover:text-gray-900 text-end w-full mt-2"
             >
               Forget Password?
-            </a>
+            </Link>
           </div>
           <div className="mt-8">
-            <button className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600">
+            <button type="submit" className="bg-yellow-500 text-white font-bold py-2 px-4 w-full rounded hover:bg-yellow-300">
               Login
             </button>
           </div>
@@ -69,7 +126,7 @@ const LoginWithGoogleButton = () => {
                 </svg>
               </div>
               <div className="flex w-full justify-center">
-                <h1 className="whitespace-nowrap text-gray-600 font-bold">
+                <h1 className="whitespace-nowrap text-yellow-500 font-bold">
                   Sign in with Google
                 </h1>
               </div>
@@ -78,10 +135,10 @@ const LoginWithGoogleButton = () => {
           <div className="mt-4 flex items-center w-full text-center">
             <a
               href="#"
-              className="text-xs text-gray-500 capitalize text-center w-full"
+              className="text-xs text-yellow-500 capitalize text-center w-full"
             >
               Don&apos;t have any account yet?
-              <span className="text-blue-700"> Sign Up</span>
+              <button  className="text-yellow-500" > Sign Up</button>
             </a>
           </div>
         </div>
@@ -89,4 +146,4 @@ const LoginWithGoogleButton = () => {
     </div>
   );
 };
-export default LoginWithGoogleButton;
+export default Login;
