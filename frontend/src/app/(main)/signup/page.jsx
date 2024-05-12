@@ -76,7 +76,7 @@ const RegistartionForm = () => {
                     id="email"
                     value={signupForm.values.email}
                     onChange={signupForm.handleChange}
-
+                    placeholder="Enter your email"
 
                   />
                   {/* <input
@@ -91,7 +91,7 @@ const RegistartionForm = () => {
                     id="password"
                     value={signupForm.values.password}
                     onChange={signupForm.handleChange}
-                    placeholder="Password"
+                    placeholder=" Enter your Password"
                   />
                   <input
                     className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
