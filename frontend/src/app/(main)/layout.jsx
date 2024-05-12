@@ -7,8 +7,7 @@ const MainLayout = ({ children }) => {
     return (
         <>
             <Navbar/>
-             {children}
-             
+             {children}  
         </>
     )
 }

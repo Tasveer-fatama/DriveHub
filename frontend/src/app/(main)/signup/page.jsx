@@ -1,5 +1,6 @@
 'use client';
 import { useFormik } from "formik";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
@@ -101,7 +102,7 @@ const RegistartionForm = () => {
                     onChange={signupForm.handleChange}
                     placeholder="Enter confirm Password"
                   />
-                  <button className="mt-5 tracking-wide font-semibold bg-yellow-600 text-white  w-full py-4 rounded-lg hover:bg-yellow-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                  <button type="submit" className="mt-5 tracking-wide font-semibold bg-yellow-600 text-white  w-full py-4 rounded-lg hover:bg-yellow-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                     <svg
                       className="w-6 h-6 -ml-2"
                       fill="none"
@@ -118,9 +119,9 @@ const RegistartionForm = () => {
                   </button>
                   <p className="mt-6 text-xs text-yellow-600 text-center">
                     Already have an account?{" "}
-                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                      Signup
-                    </button>
+                    <Link href="/login" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                      Login
+                    </Link>
                   </p>
                 </div>
               </div>

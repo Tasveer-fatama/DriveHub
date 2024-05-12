@@ -7,12 +7,13 @@ import Services from './(main)/Services/page'
 import Carlist from './(main)/Carlist/page'
 import Testimonial from './(main)/Testimonial/page'
 import Footer from './(main)/Footer/page'
+import Navbar from './(main)/Navbar'
   
 
 const page = () => {
   return (
     <div>
-      {/* <Navbar/> */}
+      <Navbar/>
       <Header/>
       <Knowmore/>
       <Services/>

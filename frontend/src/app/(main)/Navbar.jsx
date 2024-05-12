@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 
-function ColorSchemesExample() {
+function Navbar() {
   return (
     <div className=" flex flex-col">
       <nav className="bg-black from-purple-500 via-purple-600 to-purple-700 text-white">
@@ -32,4 +32,4 @@ function ColorSchemesExample() {
   );
 }
 
-export default ColorSchemesExample;
+export default Navbar;

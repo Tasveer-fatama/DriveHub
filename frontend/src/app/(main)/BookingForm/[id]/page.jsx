@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { IconArmchair, IconNumber123 } from "@tabler/icons-react";
 import Contact from "../../contact/page";
 // import { IconArmchair, IconNumber123 } from "@tabler/icons-react";
@@ -12,6 +12,8 @@ const CarBookingForm = () => {
 
   const { id } = useParams();
   const [carDetails, setCarDetails] = useState(null);
+  const router = useRouter();
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const fetchCarData = () => {
     fetch(`http://localhost:5000/car/getbyid/${id}`)
@@ -191,69 +193,44 @@ const CarBookingForm = () => {
     dateOfBooking: Yup.date().required('Date of Booking is required'),
     timing: Yup.string().required('Timing is required'),
   });
-  const CarBookingForm = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      pickup: "",
-      destination: "",
-      dateOfBooking: "",
-      timing: "",
-    },
-    onSubmit: (values, { resetForm }) => {
-      fetch('http://localhost:5000/booking/add', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      })
-        .then((response) => {
-          console.log(response.status);
-          if (response.status === 200) {
-            toast.success('Booking Successful');
-            resetForm();
-          } else {
-            toast.error('Error occurred. Please try again.');
-          }
-        }).catch((err) => {
-          console.log(err);
-        });
-    },
-    validationSchema: CarBookingFormvalidationSchema
-  });
+  
 
   const bookingCar = useFormik({
-    initialValues:{
-      pickupLocation:"",
-      bookDate:"",
-      duration:"",
-      paymentDetails:"",
-      intendId:"",
-      destination:""
-
+    initialValues: {
+      pickupLocation: "",
+      bookDate: "",
+      duration: "",
+      paymentDetails: "",
+      intendId: "",
+      destination: ""
     },
-    onSubmit: (values, {resetForm}) => {
-      fetch("http://localhost:5000/booking/add",{
-        method:"POST",
-        body:JSON.stringify(values),
-        headers:{
-          "Content-Type":"application/json"
-        }
-      })
-      .then((response) => {
-        console.log(response.status);
-        if (response.status === 200) {
-          toast.success(' Car Booked Successful');
-          resetForm();
-        } else {
-          toast.error('Error occurred. Please try again.');
-        }
-      }).catch((err) => {
-        console.log(err);
-      });
+    onSubmit: (values, { resetForm }) => {
+      if(!currentUser){
+        toast.error('Please login to book a car');
+        return;
+      }
+      sessionStorage.setItem('bookingDetails', JSON.stringify(values));
+      sessionStorage.setItem('carDetails', JSON.stringify(carDetails));
+      console.log(values);
+      router.push('/user/checkout');
+      // fetch("http://localhost:5000/booking/add", {
+      //   method: "POST",
+      //   body: JSON.stringify(values),
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   }
+      // })
+      //   .then((response) => {
+      //     console.log(response.status);
+      //     if (response.status === 200) {
+      //       toast.success(' Car Booked Successful');
+      //       resetForm();
+      //     } else {
+      //       toast.error('Error occurred. Please try again.');
+      //     }
+      //   }).catch((err) => {
+      //     console.log(err);
+      //   });
     }
   })
   return (
@@ -261,80 +238,76 @@ const CarBookingForm = () => {
       {
         displayCarDetails()
       }
-    <div className="container mx-auto px-4 py-8 bg-black text-yellow-500">
-  <h1 className="text-3xl font-bold text-center mb-8">Book a Car</h1>
-  <form className="max-w-md mx-auto" onSubmit={bookingCar.handleSubmit}>
-    <div className="mb-6">
-      <label
-        htmlFor="pickupLocation"
-        className="block text-sm font-medium mb-2"
-      >
-        PICKUP LOCATION
-      </label>
-      <input
-        id="pickupLocation"
-        type="text"
-        value={bookingCar.values.pickupLocation}
-        onChange={bookingCar.handleChange}
-        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
-      />
-    </div>
-    <div className="mb-6">
-      <label htmlFor="destination" className="block text-sm font-medium mb-2">
-        DESTINATION
-      </label>
-      <input
-        id="destination"
-        value={bookingCar.values.destination}
-        onChange={bookingCar.handleChange}
-        type="text"
-        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
-      />
-    </div>
-    <div className="flex flex-wrap -mx-3 mb-6">
-      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <div className="flex items-center">
-          <label
-            htmlFor="pickupDate"
-            className="block text-sm font-medium mr-2"
-          >
-            PICKUP DATE
-          </label>
-          <input
-            id="bookDate"
-            value={bookingCar.values.bookDate}
-            onChange={bookingCar.handleChange}
-            type="date"
-            className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
-          />
-        </div>
+      <div className="container mx-auto px-4 py-8 bg-black text-yellow-500">
+        <h1 className="text-3xl font-bold text-center mb-8">Book a Car</h1>
+        <form className="max-w-md mx-auto" onSubmit={bookingCar.handleSubmit}>
+          <div className="mb-6">
+            <label
+              htmlFor="pickupLocation"
+              className="block text-sm font-medium mb-2"
+            >
+              PICKUP LOCATION
+            </label>
+            <input
+              id="pickupLocation"
+              type="text"
+              value={bookingCar.values.pickupLocation}
+              onChange={bookingCar.handleChange}
+              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            />
+          </div>
+          <div className="mb-6">
+            <label htmlFor="destination" className="block text-sm font-medium mb-2">
+              DESTINATION
+            </label>
+            <input
+              id="destination"
+              value={bookingCar.values.destination}
+              onChange={bookingCar.handleChange}
+              type="text"
+              className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            />
+          </div>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <div className="flex items-center">
+                <label
+                  htmlFor="pickupDate"
+                  className="block text-sm font-medium mr-2"
+                >
+                  PICKUP DATE
+                </label>
+                <input
+                  id="bookDate"
+                  value={bookingCar.values.bookDate}
+                  onChange={bookingCar.handleChange}
+                  type="date"
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                />
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <div className="flex items-center">
+                <label htmlFor="hour" className="block text-sm font-medium mr-2">
+                  DAYS
+                </label>
+                <input
+                  id="duration"
+                  type="number"
+                  value={bookingCar.values.duration}
+                  onChange={bookingCar.handleChange}
+                  min={1}
+                  max={12}
+                  className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-full">
+            Book Now
+          </button>
+        </form>
       </div>
-      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-        <div className="flex items-center">
-          <label htmlFor="hour" className="block text-sm font-medium mr-2">
-            DAYS
-          </label>
-          <input
-            id="duration"
-            type="number"
-            value={bookingCar.values.duration}
-            onChange={bookingCar.handleChange}
-            min={1}
-            max={12}
-            className="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400"
-          />
-        </div>
-      </div>
-    </div>
-    <button type="submit" className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-full">
-      Book Now
-    </button>
-  </form>
-</div>
-
-
-
-
     </div>
   );
 };

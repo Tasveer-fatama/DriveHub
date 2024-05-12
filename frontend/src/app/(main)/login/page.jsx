@@ -3,23 +3,21 @@ import React from "react";
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import Link from "next/link";
-
-
-
+import { useRouter } from "next/navigation";
 
 const Login = () => {
 
+  const router = useRouter();
+
   const loginForm = useFormik({
     initialValues: {
-     
+
       email: '',
       password: ''
-      
+
     },
     onSubmit: (values) => {
       console.log(values);
-
-     
 
       fetch('http://localhost:5000/user/authenticate', {
         method: 'POST',
@@ -32,6 +30,11 @@ const Login = () => {
           console.log(response.status);
           if (response.status === 200) {
             toast.success('User LoggedIn Successfully');
+            response.json()
+              .then((data) => {
+                localStorage.setItem('user', JSON.stringify(data));
+              })
+            router.push('/Pricing');
           } else {
             toast.error('User LoggedIn Failed');
           }
@@ -42,7 +45,7 @@ const Login = () => {
 
 
     },
-   
+
   })
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
@@ -68,38 +71,38 @@ const Login = () => {
               value={loginForm.values.email}
             />
             {loginForm.touched.email && (
-                          <small class="text-danger">{loginForm.errors.email}</small>
-                        )}
-          </form>
-          <div className="mt-4 flex flex-col justify-between">
-            <div className="flex justify-between">
-              <label className="block text-yellow-500 text-sm font-bold mb-2">
-                Password
-              </label>
-            </div>
-            <input
-              className="text-yellow-500 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
-              type="password"
-              id="password"
-              onChange={loginForm.handleChange}
-              value={loginForm.values.password}
+              <small class="text-danger">{loginForm.errors.email}</small>
+            )}
+            <div className="mt-4 flex flex-col justify-between">
+              <div className="flex justify-between">
+                <label className="block text-yellow-500 text-sm font-bold mb-2">
+                  Password
+                </label>
+              </div>
+              <input
+                className="text-yellow-500 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
+                type="password"
+                id="password"
+                onChange={loginForm.handleChange}
+                value={loginForm.values.password}
 
-            />
-             {loginForm.touched.password && (
-                          <small class="text-danger">{loginForm.errors.password}</small>
-                        )}
-            <Link
-              href={"/resetPassword"}
-              className="text-xs text-yellow-500 hover:text-gray-900 text-end w-full mt-2"
-            >
-              Forget Password?
-            </Link>
-          </div>
-          <div className="mt-8">
-            <button type="submit" className="bg-yellow-500 text-white font-bold py-2 px-4 w-full rounded hover:bg-yellow-300">
-              Login
-            </button>
-          </div>
+              />
+              {loginForm.touched.password && (
+                <small class="text-danger">{loginForm.errors.password}</small>
+              )}
+              <Link
+                href={"/resetPassword"}
+                className="text-xs text-yellow-500 hover:text-gray-900 text-end w-full mt-2"
+              >
+                Forget Password?
+              </Link>
+            </div>
+            <div className="mt-8">
+              <button type="submit" className="bg-yellow-500 text-white font-bold py-2 px-4 w-full rounded hover:bg-yellow-300">
+                Login
+              </button>
+            </div>
+          </form>
           <a
             href="#"
             className=" flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100"
@@ -138,7 +141,7 @@ const Login = () => {
               className="text-xs text-yellow-500 capitalize text-center w-full"
             >
               Don&apos;t have any account yet?
-              <button  className="text-yellow-500" > Sign Up</button>
+              <button className="text-yellow-500" > Sign Up</button>
             </a>
           </div>
         </div>
