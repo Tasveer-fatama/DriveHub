@@ -12,7 +12,7 @@ const appearance = {
 const CheckOut = () => {
   const [selFile, setSelFile] = useState("");
   const hasRun = useRef(false);
-  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
+ 
   // console.log(stripePromise);
   const [clientSecret, setClientSecret] = useState("");
   const [tutorDetails, setTutorDetails] = useState(null);
@@ -24,6 +24,8 @@ const CheckOut = () => {
   const addressRef = useRef();
   const pincodeRef = useRef();
   const emailRef = useRef();
+
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY=pk_test_51PFbJSSFHJ6N4Mt6MkAbpW3mhMneg1Oz3oaYuKfLFuuOmHRhudDdkfAXyO2tK86I8sICKqr8K6pnzIUzWzFVzjEI00rLZkAHv5);
 
   const getPaymentIntent = async () => {
 

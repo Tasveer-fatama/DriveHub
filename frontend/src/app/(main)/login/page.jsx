@@ -35,7 +35,10 @@ const Login = () => {
                 localStorage.setItem('user', JSON.stringify(data));
               })
             router.push('/Pricing');
-          } else {
+          } else if(response.status == 401){
+
+            toast.error('Invalid Details');
+          }else {
             toast.error('User LoggedIn Failed');
           }
         }).catch((err) => {

@@ -20,7 +20,7 @@ app.use('/util', utilRouter);
 
 app.use(express.static('./static/uploads'));
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY=sk_test_51PFbJSSFHJ6N4Mt6jqYRYlqaXugqyViYCvDfuf0M192wfBGZ0tRSMDQJkxqiTaIvJ1leAzb7k6qsb0x2d44S6SnS00xQFIQFjh);
 
 app.post('/create-payment-intent', async (req, res) => {
     const { amount, customerData } = req.body;
