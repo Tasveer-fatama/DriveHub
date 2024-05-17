@@ -119,7 +119,7 @@ const RegistartionForm = () => {
                   </button>
                   <p className="mt-6 text-xs text-yellow-600 text-center">
                     Already have an account?{" "}
-                    <Link href="/login" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <Link href="/login" className="bg-white  text-yellow-400 font-bold py-2 px-4 rounded">
                       Login
                     </Link>
                   </p>

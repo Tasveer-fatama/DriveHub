@@ -136,7 +136,7 @@ const Footer = () => {
     </div>
   </div>
   <div className="py-6 text-sm text-center dark:text-gray-600">
-    © 1968 Company Co. All rights reserved.
+    © DRIVEHUB COMPANY All rights reserved.
   </div>
 </footer>
 

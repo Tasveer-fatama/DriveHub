@@ -7,19 +7,14 @@ const Knowmore = () => {
   <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
     <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
       <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-        We didn't reinvent the wheel
+KNOWMORE
       </h2>
       <p className="mb-4">
-        We are strategists, designers and developers. Innovators and problem
-        solvers. Small enough to be simple and quick, but big enough to deliver
-        the scope you want at the pace you need. Small enough to be simple and
-        quick, but big enough to deliver the scope you want at the pace you
-        need.
+      [DriveHub] was founded in [2024] by a group of travel enthusiasts who shared a common passion: exploring the world on their own terms. We were tired of the limitations of public transportation and the rigidity of guided tours. We craved the freedom to go wherever we wanted, whenever we wanted, and to experience the journey as much as the destination.
+
+That's why we started [DriveHub]. We wanted to create a car rental service that was more than just a transaction. We wanted it to be an enabler of adventure, a key that unlocks new experiences and memories
       </p>
-      <p>
-        We are strategists, designers and developers. Innovators and problem
-        solvers. Small enough to be simple and quick.
-      </p>
+
     </div>
     <div className="grid grid-cols-2 gap-4 mt-8">
       <img
