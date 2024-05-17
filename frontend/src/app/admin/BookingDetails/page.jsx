@@ -65,7 +65,7 @@ const BookingDetails = () => {
                                         {book.pickupLocation}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                                        {book.bookDate}
+                                        {new Date(book.bookDate).toDateString()}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                                         {book.duration}
@@ -74,7 +74,7 @@ const BookingDetails = () => {
                                         {book.destination}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                        {book.paymentDetails}
+                                        ₹{book.paymentDetails.amount/100}
                                     </td>
                                 </tr>
 

@@ -25,7 +25,7 @@ const CheckOut = () => {
   const pincodeRef = useRef();
   const emailRef = useRef();
 
-  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY=pk_test_51PFbJSSFHJ6N4Mt6MkAbpW3mhMneg1Oz3oaYuKfLFuuOmHRhudDdkfAXyO2tK86I8sICKqr8K6pnzIUzWzFVzjEI00rLZkAHv5);
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
   const getPaymentIntent = async () => {
 

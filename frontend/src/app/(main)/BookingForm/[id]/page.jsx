@@ -201,8 +201,9 @@ const CarBookingForm = () => {
       bookDate: "",
       duration: "",
       paymentDetails: "",
-      intendId: "",
-      destination: ""
+      destination: "",
+      user: currentUser._id,
+      car: id
     },
     onSubmit: (values, { resetForm }) => {
       if(!currentUser){
