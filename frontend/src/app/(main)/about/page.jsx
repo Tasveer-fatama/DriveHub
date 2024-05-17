@@ -30,7 +30,7 @@ At [Company Name], safety is our top priority. We maintain our vehicles to the h
             <div className="flex lg:flex-row flex-col justify-between gap-8 pt-12">
                 <div className="w-full lg:w-5/12 flex flex-col justify-center">
                     <h1 className="text-3xl lg:text-4xl font-bold leading-9 text-gray-800 pb-4">Our Story</h1>
-                    <p className="font-normal text-base leading-6 text-gray-600 ">[Company Name] was founded in [Year] by a group of travel enthusiasts who shared a common passion: exploring the world on their own terms. We were tired of the limitations of public transportation and the rigidity of guided tours. We craved the freedom to go wherever we wanted, whenever we wanted, and to experience the journey as much as the destination.
+                    <p className="font-normal text-base leading-6 text-gray-600 ">[] was founded in [Year] by a group of travel enthusiasts who shared a common passion: exploring the world on their own terms. We were tired of the limitations of public transportation and the rigidity of guided tours. We craved the freedom to go wherever we wanted, whenever we wanted, and to experience the journey as much as the destination.
 
 That's why we started [Company Name]. We wanted to create a car rental service that was more than just a transaction. We wanted it to be an enabler of adventure, a key that unlocks new experiences and memories.</p>
                 </div>
