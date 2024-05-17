@@ -1,10 +1,8 @@
 "use client";
 
 import { IconCircleCheck, IconCircleX } from "@tabler/icons-react";
-import { useParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "next/navigation";
-import useCartContext from "@/context/CartContext";
 
 const ThankYou = () => {
   const hasRun = useRef();
@@ -12,38 +10,37 @@ const ThankYou = () => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user"))
   );
-  const { tutorid } = useParams();
-  //   const location = useLocation();
-  let params = new URLSearchParams(location.search);
 
-  const { cartItems, clearCart } = useCartContext();
+  let params = new URLSearchParams(location.search);
+  console.log(params.get("payment_intent"));
 
   const savePayment = async () => {
+    const bookingDetails = JSON.parse(sessionStorage.getItem("bookingDetails"));
     const paymentDetails = await retrievePaymentIntent();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/order/add`,
+      `http://localhost:5000/booking/add`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user: currentUser._id,
-          items: cartItems,
+          ...bookingDetails,
           paymentDetails: paymentDetails,
           intentId: params.get("payment_intent")
         }),
       }
     );
-    console.log(response.status); 
+    console.log(response.status);
     if (response.status === 200) {
-      clearCart();
+      sessionStorage.removeItem("bookingDetails");
+      sessionStorage.removeItem("carDetails");
     }
   };
 
   const retrievePaymentIntent = async () => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/retrieve-payment-intent`,
+      `http://localhost:5000/retrieve-payment-intent`,
       {
         method: "POST",
         body: JSON.stringify({
