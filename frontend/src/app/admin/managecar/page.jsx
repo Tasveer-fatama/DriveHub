@@ -2,38 +2,38 @@
 import { enqueueSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react'
 
-const ManageUser = () => {
+const ManageCars = () => {
 
-  const [userList, setUserList] = useState([]);
+  const [carList, setCarsList] = useState([]);
 
-  const getUserList = async(values) => {
+  const getCarsList = async(values) => {
       console.log(values);
-      const res =  await fetch("http://localhost:5000/user/getall")
+      const res =  await fetch("http://localhost:5000/car/getall")
       console.log(res.status);
       const data = await res.json();
       console.log(data);
-      setUserList(data);
+      setCarsList(data);
   }
 
   useEffect(() => {
-  getUserList();
+  getCarsList();
   },[])
 
-  const deleteuser = async(id) => {
+  const deletecar = async(id) => {
     console.log(id);
-    const res = await fetch("http://localhost:5000/user/delete/"+id,{
+    const res = await fetch("http://localhost:5000/car/delete/"+id,{
       method:"DELETE"
     })
     console.log(res.status);
     if(res.status === 200){
       enqueueSnackbar("user deleted", {variant:"success"})
-      getUserList()
+      getCarsList()
     }else{
       enqueueSnackbar("something went wrong", {variant:"error"})
     }
   }
 
-  const displayUser = () => {
+  const displayCar = () => {
     return(
       <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
       <thead>
@@ -42,19 +42,31 @@ const ManageUser = () => {
             scope="col"
             className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
           >
-            Name
+            Brand
           </th>
           <th
             scope="col"
             className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
           >
-            Email
+            Model
           </th>
           <th
             scope="col"
             className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
           >
-            Password
+            Seat
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            Plate Number
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-400"
+          >
+            AC
           </th>
           <th
             scope="col"
@@ -65,22 +77,31 @@ const ManageUser = () => {
         </tr>
       </thead>
       {
-        userList.map((user) => {
+        carList.map((car) => {
           return(
             <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
             <tr>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
-               {user.name}
+               {car.brand}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-                {user.email}
+                {car.model}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-            {user.password}
+            {car.seats}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+            {car.seats}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+            {car.plateNumber}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+            {car.Ac}
+              </td>
+              <td className="px-6 py-4  text-end text-sm font-medium">
                 <button
-                onClick={e => deleteuser(user._id)}
+                onClick={e => deletecar(car._id)}
                   type="button"
                   className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400"
                 >
@@ -105,7 +126,7 @@ const ManageUser = () => {
           <div className="p-1.5 min-w-full inline-block align-middle">
             <div className="overflow-hidden">
              {
-              displayUser()
+              displayCar()
              }
             </div>
           </div>
@@ -116,4 +137,4 @@ const ManageUser = () => {
   )
 }
 
-export default ManageUser;
+export default ManageCars;

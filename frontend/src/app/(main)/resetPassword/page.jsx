@@ -35,7 +35,7 @@ const ResetPassword = () => {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(res.status);
+        console.log(res.status);S
         if (res.status === 201) {
             enqueueSnackbar('OTP sent successfully', { variant: 'success' });
         } else {

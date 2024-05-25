@@ -10,6 +10,7 @@ import Navbar from './(main)/Navbar'
 
 import { Toaster } from "react-hot-toast";
 import {Route, BrowserRouter } from "react-router-dom";
+import PrelineScript from '@/PrelineScrpt';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
         {children}
 
         </body> 
+        <PrelineScript/>
        
     </html>
   );

@@ -44,7 +44,7 @@ Model.find()
 
 //:denotes url parameter
 router.delete('/delete/:id',(req,res)=>{
-  Model.findByIdAndDelete(req,params.id)
+  Model.findByIdAndDelete(req.params.id)
   .then((result)=>{
     res.status(200).json(result);
   })
