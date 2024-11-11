@@ -17,18 +17,18 @@ WHY CHOOSE US
 
     </div>
     <div className="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
-      <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
+      <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-black  duration-300 ...">
         <div
           className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border "
           style={{
             backgroundImage:
-              "linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)",
+              "linear-gradient(rgb(255, 255, 0) 0%, rgb(255, 255, 0) 100%)",
             borderColor: "rgb(93, 79, 240)"
           }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-color-swatch"
+            className="icon icon-tabler icon-tabler-color-swatch  ;"
             width={24}
             height={24}
             viewBox="0 0 24 24"
@@ -52,12 +52,12 @@ Unlimited Mileage Options: Ideal for long-distance travelers and road trips.
 
         </p>
       </div>
-      <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
+      <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-black   duration-300 ...">
         <div
-          className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border "
+          className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border  "
           style={{
             backgroundImage:
-              "linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)",
+              "linear-gradient(rgb(255, 255, 0) 0%, rgb(255, 255, 0) 100%)",
             borderColor: "rgb(93, 79, 240)"
           }}
         >
@@ -84,12 +84,12 @@ Sustainability Practices: Initiatives to reduce our carbon footprint and promote
 
         </p>
       </div>
-      <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow">
+      <div className="rounded-md border border-neutral-800 bg-neutral-900/50 p-8 text-center shadow transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:bg-black  duration-300 ...">
         <div
-          className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border "
+          className="button-text mx-auto flex h-12 w-12 items-center justify-center rounded-md border   "
           style={{
             backgroundImage:
-              "linear-gradient(rgb(80, 70, 229) 0%, rgb(43, 49, 203) 100%)",
+              "linear-gradient(rgb(255, 255, 0) 0%, rgb(255, 255, 0) 100%)",
             borderColor: "rgb(93, 79, 240)"
           }}
         >
